@@ -6,52 +6,43 @@ This file creates your application.
 """
 
 from app import app, db
-from flask import render_template, request, redirect, url_for, flash
-from forms import UserForm
-from models import User
+from flask import render_template, request, redirect, url_for, flash, make_response
+from forms import DelayForm
+from datetime import datetime
+from models import Download
+import csv
 # import sqlite3
 
 ###
 # Routing for your application.
 ###
 
-@app.route('/')
-def home():
-    """Render website's home page."""
-    return render_template('home.html')
 
-
-@app.route('/about/')
-def about():
-    """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
-
-@app.route('/users')
-def show_users():
-    users = db.session.query(User).all() # or you could have used User.query.all()
-
-    return render_template('show_users.html', users=users)
-
-@app.route('/add-user', methods=['POST', 'GET'])
-def add_user():
-    user_form = UserForm()
+@app.route('/download')
+def download_file():
+    download_form = DelayForm()
 
     if request.method == 'POST':
-        if user_form.validate_on_submit():
+        if download_form.validate_on_submit():
             # Get validated data from form
-            name = user_form.name.data # You could also have used request.form['name']
-            email = user_form.email.data # You could also have used request.form['email']
+            delay_time = download_form.delay_time.data
 
-            # save user to database
-            user = User(name, email)
-            db.session.add(user)
+            # save now record to database
+            new_record = Download('name', 'email', delay_time)
+            db.session.add(new_record)
             db.session.commit()
 
-            flash('User successfully added')
-            return redirect(url_for('show_users'))
+            csv = 'foo,bar,baz\nhai,bai,crai\n'
+            response = make_response(csv)
+            cd = 'attachment; filename=mycsv.csv'
+            response.headers['Content-Disposition'] = cd
+            response.mimetype = 'text/csv'
 
-    flash_errors(user_form)
-    return render_template('add_user.html', form=user_form)
+            render_template('home.html')
+            return response
+
+    flash_errors(download_form)
+    return render_template('home.html', form=download_form)
 
 # Flash errors from the form if validation fails
 def flash_errors(form):
@@ -65,6 +56,7 @@ def flash_errors(form):
 ###
 # The functions below should be applicable to all Flask apps.
 ###
+
 
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
@@ -91,4 +83,4 @@ def page_not_found(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True,host="0.0.0.0",port="8080")
+    app.run(debug=True, host="0.0.0.0", port="8080")

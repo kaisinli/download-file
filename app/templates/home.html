@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1 class="page-header">Flask Starter Code</h1>
-<p class="lead">Use this starter template for your Flask apps as a way to quickly start any new project.<br>
-All you get are these files and mostly barebones HTML/CSS files.</p>
+<h1 class="page-header">Download file in
+
+<form method="POST" action="{{ url_for('download') }}">
+    {{ form.csrf_token }}
+    <div class="form-group">{{ form.name.label }} {{ form.name(size=20, class="form-control") }}</div>
+    <div class="form-group">{{ form.email.label }} {{ form.email(size=20, class="form-control", type="email") }}</div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</h1>
 {% endblock %}
