@@ -17,8 +17,12 @@ import csv
 # Routing for your application.
 ###
 
+@app.route('/')
+def home():
+    """Render website's home page."""
+    return render_template('home.html')
 
-@app.route('/download')
+@app.route('/download', methods=['POST'])
 def download_file():
     download_form = DelayForm()
 
