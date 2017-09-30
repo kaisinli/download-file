@@ -8,3 +8,7 @@ Thumbs.db
 # virtualenv
 .venv/
 venv/
+
+node_modules
+
+webpack.config.js

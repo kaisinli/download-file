@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+  <h1 class="page-header">Download</h1>
+  <form method="POST" action="{{ url_for('download_file') }}">
+    {{ form.csrf_token }}
+    <div class="form-group">{{ form.delay.label }} {{ form.delay(size=20, class="form-control") }}</div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

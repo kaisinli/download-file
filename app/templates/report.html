@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block main %}
+<div class="container">
+  <h1 class="page-header">Report</h1>
+
+  <table>
+    <tr>
+      <th> Client IP </th>
+      <th> Timestamp </th>
+      <th> Delay(s) </th>
+    </tr>
+
+    {% for record in records %}
+    <tr>
+      <th>{{ record.client_ip }}</th>
+      <th>{{ record.timestamp }}</th>
+      <th>{{ record.delay }}</th>
+    </tr>
+    {% endfor %}
+
+  </table>
+</div>
+{% endblock %}
