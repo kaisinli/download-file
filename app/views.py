@@ -1,8 +1,12 @@
 from app import app, db
-from flask import render_template, request, redirect, url_for, flash, make_response, jsonify
-from forms import DelayForm
+from flask import render_template, request, redirect, url_for, flash, stream_with_context
 from models import Download
+from werkzeug.datastructures import Headers
+from werkzeug.wrappers import Response
+from io import StringIO
+from forms import DelayForm
 import time
+import csv
 
 # Routes
 @app.route('/')
@@ -32,10 +36,6 @@ def download_file():
             db.session.add(record)
             db.session.commit()
 
-            #generates a csv
-            
-
-            flash('Record successfully added')
             return redirect(url_for('report'))
 
     flash_errors(download_form)

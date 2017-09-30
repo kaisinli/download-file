@@ -1,6 +1,4 @@
-# flask_sqlite
-A Flask Application that demonstrates Flask-WTF and Flask-SQLAlchemy using a
-SQLite database.
+# Get File
 
 ## Instructions
 As always ensure you create a virtual environment for this application and install
@@ -15,7 +13,7 @@ $ pip install -r requirements.txt
 Then create the sqlite3 database file and create the tables based on our `app/models.py`.
 
 ```
-$ touch /tmp/mydatabase.db
+$ touch downloads.db
 $ python
 >>> from app import db
 >>> db.create_all()
@@ -30,5 +28,3 @@ $ python run.py
 
 Browse to http://0.0.0.0:8080
 
-You can then add new users by browsing to http://0.0.0.0:8080/add-user and view
-a list of users by browsing to http://0.0.0.0:8080/users
