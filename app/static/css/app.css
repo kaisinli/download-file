@@ -2,3 +2,7 @@ body {
     padding-top: 50px;
     padding-bottom:50px;
 }
+
+th, td {
+    width: 30%;
+}
