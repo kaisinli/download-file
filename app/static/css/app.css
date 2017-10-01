@@ -3,6 +3,14 @@ body {
     padding-bottom:50px;
 }
 
-th, td {
-    width: 30%;
+.clientip {
+    width: 30%
+}
+
+.timestamp {
+    width: 40%
+}
+
+.delay {
+    width: 20%
 }

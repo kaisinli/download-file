@@ -4,16 +4,16 @@
 
   <table>
     <tr>
-      <th> Client IP </th>
-      <th> Timestamp </th>
-      <th> Delay(s) </th>
+      <th class = "clientip"> Client IP </th>
+      <th class = "timestamp"> Timestamp </th>
+      <th class = "delay"> Delay(s) </th>
     </tr>
 
     {% for record in records %}
     <tr>
-      <td>{{ record.client_ip }}</td>
-      <td>{{ record.timestamp }}</td>
-      <td>{{ record.delay }}</td>
+      <td class = "clientip">{{ record.client_ip }}</td>
+      <td class = "timestamp">{{ record.timestamp }}</td>
+      <td class = "delay">{{ record.delay }}</td>
     </tr>
     {% endfor %}
 
