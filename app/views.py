@@ -1,23 +1,26 @@
 from app import app, db
-from flask import render_template, request, redirect, url_for, flash, stream_with_context
+from flask import render_template, request, redirect, url_for, flash, stream_with_context, Response
 from models import Download
 from werkzeug.datastructures import Headers
-from werkzeug.wrappers import Response
 from io import StringIO
 from forms import DelayForm
 import time
-import csv
+# import csv
 
 # Routes
+
+
 @app.route('/')
 def home():
     """Render website's home page."""
     return render_template('home.html')
 
+
 @app.route('/records')
 def report():
-    records = db.session.query(Download).all() 
+    records = db.session.query(Download).all()
     return render_template('report.html', records=records)
+
 
 @app.route('/download', methods=['POST', 'GET'])
 def download_file():
@@ -36,30 +39,19 @@ def download_file():
             db.session.add(record)
             db.session.commit()
 
-            #generates a csv
-            def generate():
-                data = StringIO()
-                w = csv.writer(data)
-            
-                w.writerow(('action', 'timestamp'))
-                yield data.getvalue()
-                data.seek(0)
-                data.truncate(0)
-
-            headers = Headers()
-            headers.set('Content-Disposition', 'attachment', filename='somefile.csv')
-
+            csv = '1,2,3\n4,5,6\n'
             return Response(
-                stream_with_context(generate()),
-                mimetype='text/csv', 
-                headers=headers
+                csv,
+                mimetype="text/csv",
+                headers={"Content-disposition":
+                         "attachment; filename=somefile.csv"}
             )
+
 
     flash_errors(download_form)
     return render_template('download.html', form=download_form)
 
 # Flash errors from the form if validation fails
-
 def flash_errors(form):
     for field, errors in form.errors.items():
         for error in errors:
