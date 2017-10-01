@@ -47,7 +47,6 @@ def download_file():
                          "attachment; filename=somefile.csv"}
             )
 
-
     flash_errors(download_form)
     return render_template('download.html', form=download_form)
 
@@ -59,16 +58,6 @@ def flash_errors(form):
                 getattr(form, field).label.text,
                 error
             ))
-
-###
-# The functions below should be applicable to all Flask apps.
-###
-
-@app.route('/<file_name>.txt')
-def send_text_file(file_name):
-    """Send your static text file."""
-    file_dot_text = file_name + '.txt'
-    return app.send_static_file(file_dot_text)
 
 @app.after_request
 def add_header(response):

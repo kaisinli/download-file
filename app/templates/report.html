@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block main %}
 <div class="container">
-  <h1 class="page-header">Report</h1>
+  <h1 class="page-header">Report (you may need to refresh)</h1>
 
   <table>
     <tr>
@@ -11,9 +11,9 @@
 
     {% for record in records %}
     <tr>
-      <th>{{ record.client_ip }}</th>
-      <th>{{ record.timestamp }}</th>
-      <th>{{ record.delay }}</th>
+      <td>{{ record.client_ip }}</td>
+      <td>{{ record.timestamp }}</td>
+      <td>{{ record.delay }}</td>
     </tr>
     {% endfor %}
 
