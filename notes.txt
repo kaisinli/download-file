@@ -12,7 +12,8 @@
             headers.set('Content-Disposition', 'attachment', filename='somefile.csv')
 
 
-     return Response(
+            Response(
                 stream_with_context(generate()),
-                mimetype='text/csv', headers=headers
+                mimetype='text/csv', 
+                headers=headers
             )

@@ -36,7 +36,24 @@ def download_file():
             db.session.add(record)
             db.session.commit()
 
-            return redirect(url_for('report'))
+            #generates a csv
+            def generate():
+                data = StringIO()
+                w = csv.writer(data)
+            
+                w.writerow(('action', 'timestamp'))
+                yield data.getvalue()
+                data.seek(0)
+                data.truncate(0)
+
+            headers = Headers()
+            headers.set('Content-Disposition', 'attachment', filename='somefile.csv')
+
+            return Response(
+                stream_with_context(generate()),
+                mimetype='text/csv', 
+                headers=headers
+            )
 
     flash_errors(download_form)
     return render_template('download.html', form=download_form)
