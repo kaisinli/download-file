@@ -5,10 +5,8 @@ from werkzeug.datastructures import Headers
 from io import StringIO
 from forms import DelayForm
 import time
-# import csv
 
 # Routes
-
 
 @app.route('/')
 def home():
