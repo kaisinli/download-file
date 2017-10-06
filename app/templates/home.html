@@ -7,6 +7,6 @@
 <p class="lead">Possible sources of latency for this web app include on the Reports page, the app has to query all data in the database. As the database gets larger and larger, latency would increase, since every time a user wants to view the report, it has to query everything. A way to solve this problem is to lazy load, returning a section of the database initially and load more when the user requests. There can also be indexing in the dababase to improve performance. With indexes, users can locate specific rows they want to look at. </p>
 <p class="lead">A way to make the latnecy of this app worse is if users are downloading a large file or a large number of users are querying the databse at the same time. Anther way to improve this is to partition and index the database. Currently, the database only has one table. However, as it get more complex with multiple tables, it can either store multiple tables in one file or store single table in singler file. Partitioning helps to accomplish parallelism, enabling many operations are performed simultaneously.</p>
 <h3>Scalability</h3>
-<p class="lead">One thing can be done to "scale"" this app up to 1MM possible users is to run on more instances of EC2.
+<p class="lead">One thing can be done to "scale" this app up to 1MM possible users is to run on more instances of EC2.
  </p>
 {% endblock %}

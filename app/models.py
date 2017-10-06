@@ -14,4 +14,3 @@ class Download(db.Model):
 
     def __repr__(self):
         return '<Download %r>' % self.client_ip
-

@@ -1,8 +1,6 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash, stream_with_context, Response
 from models import Download
-from werkzeug.datastructures import Headers
-from io import StringIO
 from forms import DelayForm
 import time
 
