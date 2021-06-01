@@ -33,7 +33,7 @@ singledispatch==3.4.0.3
 six==1.11.0
 SQLAlchemy==1.1.14
 stevedore==1.27.0
-urllib3==1.22
+urllib3==1.26.5
 virtualenv==15.1.0
 virtualenv-clone==0.2.6
 virtualenvwrapper==4.8.2
